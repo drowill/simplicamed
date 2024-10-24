@@ -1,0 +1,121 @@
+openapi: '3.0.1'
+info:
+  title: Cadastro de Consultas medicas
+  description: 
+    CRUD de Consultas para o projeto SimplicaMed que ira cadastrar as consultas dos pacientes, eles devem informar seu nome, sua idade, seu peso e a data da consulta medica
+  version: '0.1'
+servers:
+  - url: http://{host}:{porta}/api
+    variables:
+      host: 
+        default: localhost
+      porta:
+        default: '8000'
+paths:
+  /consultas:
+    get:
+      summary: Acessar Consultas
+      responses:
+        200:
+          description: OK
+    
+    post:
+      summary: Criar uma consulta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do paciente
+                idade:
+                  type: integer
+                  description: Idade do paciente
+                data:
+                  type: string
+                  pattern: 'DD-MM-YYYY'
+                  description: Data da consulta
+                peso:
+                  type: number
+                  description: Peso do paciente
+      responses:
+        201:
+          description: Consulta criada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        400:
+          description: Requisição inválida
+
+  /consultas/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: 
+          type: string
+
+    get:
+      summary: Acessa uma consulta
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  idade:
+                    type: number
+                  data:
+                    type: string
+                  peso:
+                    type: number
+        404:
+          description: Não encontrado.
+
+    delete:
+      summary: Deleta uma consulta
+      responses:
+        200:
+          description: OK
+        404:
+          description: Nao encontrado.
+    
+    put: 
+      summary: Edita uma consulta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do paciente
+                idade:
+                  type: integer
+                  description: Idade do paciente
+                data:
+                  type: string
+                  pattern: 'DD-MM-YYYY'
+                  description: Data da consulta
+                peso:
+                  type: number
+                  description: Peso do paciente
+      responses:
+        200:
+          description: OK, consulta editada
+        404:
+          description: Nao encontrado
