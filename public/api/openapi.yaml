@@ -3,7 +3,7 @@ info:
   title: Cadastro de Consultas medicas
   description: 
     CRUD de Consultas para o projeto SimplicaMed que ira cadastrar as consultas dos pacientes, eles devem informar seu nome, sua idade, seu peso e a data da consulta medica
-  version: '0.1'
+  version: '1.0'
 servers:
   - url: http://{host}:{porta}/api
     variables:
@@ -18,9 +18,8 @@ paths:
       responses:
         200:
           description: OK
-    
     post:
-      summary: Criar uma consulta
+      summary: Criar consulta
       requestBody:
         required: true
         content:
@@ -28,22 +27,38 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                title:
                   type: string
-                  description: Nome do paciente
+                  description: Titulo da consulta
+                  example: Dor de cabeça
+                user_id:
+                  type: integer
+                  description: ID do usuario
+                  example: 1
                 idade:
                   type: integer
                   description: Idade do paciente
+                  example: 15
+                descricao:
+                  type: string
+                  description: Descricao da consulta
+                  example: Estou com muita dor de cabeca
                 data:
                   type: string
-                  pattern: 'DD-MM-YYYY'
+                  pattern: 'YYYY-MM-DD'
                   description: Data da consulta
-                peso:
-                  type: number
-                  description: Peso do paciente
+                  example: '2024-12-12'
+                horario:
+                  type: string
+                  pattern: '00:00'
+                  description: Horario da consulta
+                status:
+                  type: integer
+                  description: status da consulta 
+                  example: 1
       responses:
         201:
-          description: Consulta criada
+          description: Consulta criada com sucesso
           content:
             application/json:
               schema:
@@ -52,38 +67,23 @@ paths:
                   location:
                     type: string
                     description: O URI do novo recurso criado.
-        400:
+        404:
           description: Requisição inválida
-
   /consultas/{id}:
     parameters:
-      - name: id
-        in: path
-        required: true
-        schema: 
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: string
 
     get:
       summary: Acessa uma consulta
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nome:
-                    type: string
-                  idade:
-                    type: number
-                  data:
-                    type: string
-                  peso:
-                    type: number
         404:
           description: Não encontrado.
-
     delete:
       summary: Deleta uma consulta
       responses:
@@ -91,8 +91,7 @@ paths:
           description: OK
         404:
           description: Nao encontrado.
-    
-    put: 
+    put:
       summary: Edita uma consulta
       requestBody:
         required: true
@@ -101,21 +100,378 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                title:
                   type: string
-                  description: Nome do paciente
+                  description: Titulo da consulta
+                  example: Dor de cabeca
+                user_id:
+                  type: integer
+                  description: ID do usuario
+                  example: 1
                 idade:
                   type: integer
                   description: Idade do paciente
+                  example: 15
+                descricao:
+                  type: string
+                  description: Descricao da consulta
+                  example: Estou com muita dor de cabeca
                 data:
                   type: string
-                  pattern: 'DD-MM-YYYY'
+                  pattern: 'YYYY-MM-DD'
                   description: Data da consulta
-                peso:
-                  type: number
-                  description: Peso do paciente
+                  example: '2024-12-12'
+                horario:
+                  type: string
+                  pattern: '00:00'
+                  description: Horario da consulta
+                  example: '12:00'
+                status:
+                  type: integer
+                  description: status da consulta 
+                  example: 1
+      responses:
+        201:
+          description: Consulta editada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+
+  /profissionals:
+    get:
+      summary: Acessar profissionais
       responses:
         200:
-          description: OK, consulta editada
+          description: OK
         404:
-          description: Nao encontrado
+          description: Não encontrado.
+    post:
+      summary: Criar Profissional
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nome do profissional
+                  example: Juliano
+                cpf:
+                  type: string
+                  description: CPF do profissional
+                  example: 123.123.123-09
+                endereco:
+                  type: string
+                  description: Endereco do profissional
+                  example: Rua da felicidade, 990
+                telefone:
+                  type: string
+                  description: telefone do profissional
+                  example: '(84)99876-1234'
+                tipo:
+                  type: string
+                  description: Tipo de profissional
+                  example: Médico cardiologista
+      responses:
+        201:
+          description: Profissional criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+  /profissionals/{id}:
+    parameters:
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: string
+    get:
+      summary: Acessa um profissional
+      responses:
+        200:
+          description: OK
+        404:
+          description: Não encontrado.
+    delete:
+      summary: Deleta um profissional
+      responses:
+        200:
+          description: OK
+        404:
+          description: Nao encontrado.
+    put:
+      summary: Editar Profissional
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nome do profissional
+                  example: Juliano
+                cpf:
+                  type: string
+                  description: CPF do profissional
+                  example: 123.123.123-09
+                endereco:
+                  type: string
+                  description: Endereco do profissional
+                  example: Rua da felicidade, 990
+                telefone:
+                  type: string
+                  description: telefone do profissional
+                  example: '(84)99876-1234'
+                tipo:
+                  type: string
+                  description: Tipo de profissional
+                  example: Médico cardiologista
+      responses:
+        201:
+          description: Profissional editado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+  /users:
+    get:
+      summary: Acessar usuarios
+      responses:
+        200:
+          description: OK
+    post:
+      summary: Criar usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nome do usuario
+                  example: Paula
+                email:
+                  type: string
+                  description: Email do usuario
+                  example: "paula@email.com"
+                password:
+                  type: string
+                  description: Senha do usuario
+                  example: "12345678"
+                permission_level:
+                  type: integer
+                  description: Nível de permissao (0-normal,1-admin,2-profissional)
+                  example: 0
+                profissional_id:
+                  type: integer
+                  nullable: true
+                  description: ID do profissional (se for)
+                  example: 3
+      responses:
+        201:
+          description: Consulta criada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+  /users/{id}:
+    parameters:
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: string
+    get:
+      summary: Acessa um usuario
+      responses:
+        200:
+          description: OK
+        404:
+          description: Não encontrado.
+    delete:
+      summary: Deleta um usuario
+      responses:
+        200:
+          description: OK
+        404:
+          description: Nao encontrado.
+    put:
+      summary: Edita um usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nome do usuario
+                  example: Paula
+                email:
+                  type: string
+                  description: Email do usuario
+                  example: "paula@email.com"
+                password:
+                  type: string
+                  description: Senha do usuario
+                  example: "12345678"
+                permission_level:
+                  type: integer
+                  description: Nível de permissao (0-normal,1-admin,2-profissional)
+                  example: 0
+                profissional_id:
+                  type: integer
+                  nullable: true
+                  description: ID do profissional (se for)
+                  example: 3
+      responses:
+        201:
+          description: Usuario editado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+  /agendamentos:
+    get:
+      summary: Acessa os agendamentos
+      responses:
+        200:
+          description: OK
+        404:
+          description: Não encontrado.
+    post:
+      summary: Cria um agendamento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ID do usuario
+                  example: 1
+                profissional_id:
+                  type: integer
+                  description: ID do profissional
+                  example: 2
+                consulta_id:
+                  type: integer
+                  description: ID da consulta
+                  example: 1
+                status:
+                  type: integer
+                  description: Status do agendamento
+                  example: 1
+      responses:
+        201:
+          description: Agendamento criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida
+  /agendamentos/{id}:
+    parameters:
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: string
+    get:
+      summary: Acessa um agendamento
+      responses:
+        200:
+          description: OK
+        404:
+          description: Não encontrado.
+    delete:
+      summary: Deleta um agendamento
+      responses:
+        200:
+          description: OK
+        404:
+          description: Nao encontrado.
+    put:
+      summary: Edita um agendamento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ID do usuario
+                  example: 1
+                profissional_id:
+                  type: integer
+                  description: ID do profissional
+                  example: 2
+                consulta_id:
+                  type: integer
+                  description: ID da consulta
+                  example: 1
+                status:
+                  type: integer
+                  description: Status do agendamento
+                  example: 1
+      responses:
+        201:
+          description: Agendamento editado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        404:
+          description: Requisição inválida

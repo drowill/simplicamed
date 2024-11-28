@@ -1,0 +1,121 @@
+/* Geral */
+/* *{
+    font-family: 'Roboto';
+} */
+
+body{
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+header{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    /* padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.row{
+    margin: 0;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+a.btn.btn-primary{
+    border: 1px solid #0a58ca;
+    /* color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; */
+}
+
+/* a.btn.btn-primary:hover{
+    background-color: #c28008;
+    border-color: #c28008;
+} */
+
+#navbar img{
+    width: 50px;
+}
+
+#search-container-agenda{
+    background-image: url("../img/consulta.avif");
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    padding: 50px;
+    text-align: center;
+}
+
+#search-container-agenda h1{
+    color: #002244;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+
+#search-container-agenda form{
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* Cards Consultas */
+#consultas-container{
+    padding: 50px;
+}
+
+#consultas-container h1{
+    margin-bottom: 10px;
+    color: #002244;
+    font-weight: bold;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#consultas-container .card{
+    flex: 1 1 0;
+    max-width: 25%;
+    border-radius: 10px;
+    padding: 0;
+    margin: 5px;
+}
+
+#consultas-container img{
+    max-height: 150px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card .card-date-time{
+    font-size: 12px;
+    color: #757575;
+    font-weight: bold;
+    /* margin-top: auto; */
+}
+
+.card .card-title{
+    font-size: 25px;
+    color: #002244;
+    margin-bottom: 10px;
+}
+
+.btn{
+    /* margin-top: auto; */
+    width: 50%;
+}
