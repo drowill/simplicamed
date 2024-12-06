@@ -63,6 +63,19 @@ class UserController extends Controller
         return response()->json($u, 200);
     }
 
+    public function delete($id)
+    {
+        $u = User::find($id);
+
+        if(!$u)
+        {
+            return response()->json(['message' => 'Usuario não encontrado.'], 404);
+        }
+
+        $u->delete();
+        return response()->json('Usuario deletada',201);
+    }
+
     public function create() {
         return view('profile.profile');
     }
