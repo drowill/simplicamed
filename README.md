@@ -1,4 +1,4 @@
-Sistema de Agendamento de consultas médicas – SimplicaMed
+Sistema de Agendamento de consultas médicas – SimplificacaMed
 
 LINK FIGMA GITHUB https://www.figma.com/design/sB05O4ZvVSJlI1as4327Yr/Pagina-Inicial?node-id=0-1&t=42qmCKOCupAUQMSV-0
 
