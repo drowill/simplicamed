@@ -1,11 +1,28 @@
-Sistema de Agendamento de consultas médicas – SimplificacaMed
+Backend
+-------
 
-LINK FIGMA GITHUB https://www.figma.com/design/sB05O4ZvVSJlI1as4327Yr/Pagina-Inicial?node-id=0-1&t=42qmCKOCupAUQMSV-0
+Comandos úteis:
 
-LINK PARA O FIGJAM - DIVISÃO DE RESPONSABILIDADES https://www.figma.com/board/GJVMFi8VxKjkaKR8qbkaJ0/Untitled?node-id=0-1&node-type=canvas&t=Kx0CJ980Pu32JqHx-0
-
+```bash
+# Instalar dependências
 composer install
 
-php artisan migrate
+# Preparar configurações
+php artisan config:clear
+php artisan config:cache
+php artisan view:clear
 
+# Criar banco inicial
+php artisan migrate
+php artisan db:seed
+
+# Resetar estado do banco
+php artisan migrate:fresh
+php artisan db:seed
+
+# Executar o sistema
 php artisan serve
+
+# Visualizar rotas
+php artisan route:list
+```
