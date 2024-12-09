@@ -3,18 +3,19 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-/storage/*.key
-/storage/logs/*
-/storage/cache/*
-/storage/session/*
-/storage/views/*
+storage/*.key
+storate/logs/*
+storage/cache/*
+storage/session/*
+storage/views/*
+
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
 
 /public/build
-/storage/pail
+/storage/pai
 .env.backup
 .env.production
 .phpactor.json

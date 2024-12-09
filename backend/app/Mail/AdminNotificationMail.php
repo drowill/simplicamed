@@ -13,8 +13,7 @@ class AdminNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $consulta;
-
+    private $consulta;
     public function __construct($consulta)
     {
         $this->consulta = $consulta;
@@ -24,7 +23,7 @@ class AdminNotificationMail extends Mailable
     {
         return $this->view('emails.admin_notification')
                     ->subject('Nova Consulta Cadastrada')
-                    ->with('consulta', $this->consulta);
+                    ->with('consulta', $this->get());
     }
 
     /**

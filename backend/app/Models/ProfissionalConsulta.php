@@ -12,14 +12,14 @@ class ProfissionalConsulta extends Model
     protected $table = 'profissional_consulta';
 
     protected $fillable = [
-        'user_id',
+        'cliente_id',
         'profissional_id',
         'consulta_id',
         'status',
     ];
 
     // Relação com o modelo User
-    public function user()
+    public function cliente()
     {
         return $this->belongsTo(User::class);
     }
@@ -27,7 +27,7 @@ class ProfissionalConsulta extends Model
     // Relação com o modelo Profissional
     public function profissional()
     {
-        return $this->belongsTo(Profissional::class, 'profissional_id');
+        return $this->belongsTo(User::class, 'profissional_id');
     }
 
     // Relação com o modelo Consulta

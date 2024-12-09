@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void{
         Schema::create('profissional_consulta', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('profissional_id')->constrained('profissionals')->onDelete('cascade');
-            $table->foreignId('consulta_id')->constrained('consultas')->onDelete('cascade');
+            $table->foreignId('cliente_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('profissional_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('consulta_id')->constrained('consultas')->onDelete('cascade')->unique();
             $table->integer('status')->default(1); // status padrão como 1 (pendente)
             $table->timestamps();
         });

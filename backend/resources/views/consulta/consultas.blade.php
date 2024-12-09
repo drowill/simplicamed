@@ -34,7 +34,7 @@
             <!-- Idade -->
             <div class="form-group mb-3">
                 <label for="idade">Idade</label>
-                <input type="number" name="idade" class="form-control" value="{{old('idade')}}" required>
+                <input type="number" name="idade" class="form-control" min=18 value="{{old('idade')}}" required>
             </div>
 
             <!-- Endereço -->

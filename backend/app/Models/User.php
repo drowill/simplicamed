@@ -18,7 +18,16 @@ class User extends Authenticatable
      */
     // Certifique-se de adicionar os campos que podem ser atualizados no array fillable
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'data_nascimento', 'endereco', 'telefone', 'permission_level', 'profissional_id'
+        'name', 
+        'email', 
+        'password', 
+        'cpf', 
+        'data_nascimento', 
+        'endereco', 
+        'telefone', 
+        'permission_level', 
+        'tipo',
+        'google_id'
     ];
 
     /**
@@ -41,20 +50,12 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'data_nascimento' => 'date'
         ];
     }
 
     public function consultas(){
         return $this->hasMany(Consulta::class);
-    }
-
-    public function profissionalConsultas(){
-        return $this->hasMany(ProfissionalConsulta::class);
-    }
-
-    public function profissional()
-    {
-        return $this->belongsTo(Profissional::class, 'profissional_id');
     }
 
 }

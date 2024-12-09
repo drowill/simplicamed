@@ -8,21 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Consulta extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'user_id', 'idade', 'descricao', 'data', 'horario', 'status'];
+    protected $fillable = [
+        'titulo', 
+        'cliente_id', 
+        'idade', 
+        'descricao', 
+        'data', 
+        'horario', 
+        'status'
+    ];
 
-    public function user()
+    public function cliente()
     {
-        return $this->belongsTo(User::class); // Relacionamento de muitos para um
+        return $this->belongsTo(User::class, 'cliente_id');
     }
 
-    public function profissionais(){
-        return $this->hasMany(ProfissionalConsulta::class);
-    }
-
-    public function profissionalConsulta(){
-        return $this->hasOne(ProfissionalConsulta::class);
+    public function profissional()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
+
 
 // <!-- OS MODELS ESTABELECEM A COMUNICAÇÃO DO BANCO COM A NOSSA APLICAÇÃO POR MEIO DA ORM ELOQUENT! -->

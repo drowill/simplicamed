@@ -23,7 +23,9 @@ return new class extends Migration
             $table->date('data_nascimento')->nullable(); // Data de nascimento
             $table->string('endereco')->nullable(); // Endereço
             $table->string('telefone')->nullable(); // Telefone
-            $table->foreignId('profissional_id')->nullable()->constrained('profissionals')->onDelete('set null');
+            $table->string('tipo')->nullable(); // Tipo (Especialização)
+            $table->string('google_id')->nullable(); // Tipo (Especialização)
+            $table->string('foto')->nullable(); // Foto
             $table->rememberToken();
             $table->timestamps();
         });
